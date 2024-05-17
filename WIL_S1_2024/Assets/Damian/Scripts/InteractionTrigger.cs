@@ -28,7 +28,8 @@ public class InteractionTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player")) 
         {
-            if (instantiatedCanvas == null && canvasSpawnPoint != null)
+            if 
+                (instantiatedCanvas == null && canvasSpawnPoint != null)
             {
                 instantiatedCanvas = Instantiate(interactionCanvasPrefab, canvasSpawnPoint.position, Quaternion.identity);
             }
