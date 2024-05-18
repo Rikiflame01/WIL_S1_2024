@@ -17,3 +17,7 @@ MonoBehaviour:
   level: 1
   resourceProduced: Electricity
   resourceInterval: 60
+  repairCost: 15
+  upgradeCost: 20
+  upgradeDescription: This will improve the production of electricity
+  repairDescription: This will enable production of electricity!
