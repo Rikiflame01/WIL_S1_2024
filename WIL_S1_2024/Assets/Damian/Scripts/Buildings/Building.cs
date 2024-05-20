@@ -6,6 +6,7 @@ using TMPro;
 /// </summary>
 public class Building : MonoBehaviour
 {
+
     #region Variables
     [Tooltip("Data for the building.")]
     public BuildingData buildingData;
@@ -70,7 +71,7 @@ public class Building : MonoBehaviour
 
             if (buildingCanvas.enabled && buildingInfoText != null)
             {
-                UpdateBuildingInfoText(); // Update the text when the canvas is enabled
+                UpdateBuildingInfoText();
             }
         }
     }
