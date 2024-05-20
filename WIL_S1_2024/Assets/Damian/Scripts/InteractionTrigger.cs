@@ -7,6 +7,9 @@ public class InteractionTrigger : MonoBehaviour
     private GameObject instantiatedCanvas;
     public Camera mainCamera;
 
+    [Tooltip("Building data to select when the player enters this trigger.")]
+    public BuildingData buildingData;
+
     void Start()
     {
         if (mainCamera == null)
@@ -20,18 +23,26 @@ public class InteractionTrigger : MonoBehaviour
         if (instantiatedCanvas != null)
         {
             instantiatedCanvas.transform.LookAt(mainCamera.transform);
-            instantiatedCanvas.transform.Rotate(0, 180, 0); 
+            instantiatedCanvas.transform.Rotate(0, 180, 0);
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
         {
-            if 
-                (instantiatedCanvas == null && canvasSpawnPoint != null)
+            if (instantiatedCanvas == null && canvasSpawnPoint != null)
             {
                 instantiatedCanvas = Instantiate(interactionCanvasPrefab, canvasSpawnPoint.position, Quaternion.identity);
+                if (buildingData != null)
+                {
+                    BuildingEventManager.SelectBuilding(buildingData);
+                    Debug.Log("Building selected: " + buildingData.buildingName);
+                }
+                else
+                {
+                    Debug.LogError("BuildingData is not assigned to the InteractionTrigger.");
+                }
             }
         }
     }

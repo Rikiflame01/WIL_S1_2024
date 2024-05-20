@@ -29,6 +29,8 @@ public class CanvasManager : MonoBehaviour
     #region Unity Methods
     void Awake()
     {
+        BuildingEventManager.OnBuildingSelected += SetBuildingData;
+
         if (initialBuildingData != null)
         {
             SetBuildingData(initialBuildingData);
@@ -39,6 +41,11 @@ public class CanvasManager : MonoBehaviour
             Debug.LogWarning("Initial BuildingData is not set.");
         }
     }
+
+    void OnDestroy()
+    {
+        BuildingEventManager.OnBuildingSelected -= SetBuildingData;
+    }
     #endregion
 
     #region Public Methods
@@ -46,6 +53,7 @@ public class CanvasManager : MonoBehaviour
     {
         currentBuildingData = buildingData;
         Debug.Log("BuildingData set: " + buildingData.buildingName);
+        UpdateCanvasTexts(buildingData);
     }
 
     public void EnableCanvas(int index)
