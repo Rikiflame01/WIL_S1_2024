@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 138259754}
   - component: {fileID: 138259759}
   m_Layer: 0
-  m_Name: Body
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1776,7 +1776,7 @@ GameObject:
   - component: {fileID: 1172364276}
   - component: {fileID: 1172364279}
   m_Layer: 0
-  m_Name: Building 1
+  m_Name: WaterPump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1909,7 +1909,7 @@ GameObject:
   - component: {fileID: 1243857808}
   - component: {fileID: 1243857811}
   m_Layer: 0
-  m_Name: Building 1 (1)
+  m_Name: Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
