@@ -31,8 +31,6 @@ public class CanvasManager : MonoBehaviour
     {
         BuildingEventManager.OnBuildingSelected += SetBuildingData;
 
-        AssignTextMeshProReferences();
-
         if (initialBuildingData != null)
         {
             SetBuildingData(initialBuildingData);
@@ -75,8 +73,7 @@ public class CanvasManager : MonoBehaviour
         if (canvases[index] != null)
         {
             canvases[index].enabled = true;
-            canvases[index].gameObject.SetActive(true); // Ensure the canvas is active
-            canvases[index].GetComponent<CanvasGroup>().alpha = 1; // Ensure the canvas is fully visible
+            canvases[index].gameObject.SetActive(true);
             UpdateCanvasTexts(currentBuildingData);
         }
         else
@@ -96,7 +93,7 @@ public class CanvasManager : MonoBehaviour
         if (canvases[index] != null)
         {
             canvases[index].enabled = false;
-            canvases[index].gameObject.SetActive(false); // Ensure the canvas is inactive
+            canvases[index].gameObject.SetActive(false);
         }
         else
         {
@@ -113,59 +110,8 @@ public class CanvasManager : MonoBehaviour
     #endregion
 
     #region Private Methods
-    private void AssignTextMeshProReferences()
-    {
-        Canvas repairCanvas = FindCanvasWithTag("RepairConfirmationCanvas");
-        if (repairCanvas != null)
-        {
-            repairText = FindTextMeshProInChildren(repairCanvas, "RepairText");
-            repairCostText = FindTextMeshProInChildren(repairCanvas, "RepairCostText");
-        }
-
-        Canvas upgradeCanvas = FindCanvasWithTag("UpgradeConfirmationCanvas");
-        if (upgradeCanvas != null)
-        {
-            upgradeText = FindTextMeshProInChildren(upgradeCanvas, "UpgradeText");
-            upgradeCostText = FindTextMeshProInChildren(upgradeCanvas, "UpgradeCostText");
-        }
-    }
-
-    private Canvas FindCanvasWithTag(string tag)
-    {
-        GameObject canvasObject = GameObject.FindWithTag(tag);
-        if (canvasObject != null)
-        {
-            return canvasObject.GetComponent<Canvas>();
-        }
-        else
-        {
-            Debug.LogError("Canvas with tag " + tag + " not found.");
-            return null;
-        }
-    }
-
-    private TextMeshProUGUI FindTextMeshProInChildren(Canvas canvas, string textObjectName)
-    {
-        Transform textTransform = canvas.transform.Find(textObjectName);
-        if (textTransform != null)
-        {
-            return textTransform.GetComponent<TextMeshProUGUI>();
-        }
-        else
-        {
-            Debug.LogError("TextMeshProUGUI with name " + textObjectName + " not found in canvas " + canvas.name);
-            return null;
-        }
-    }
-
     private void UpdateCanvasTexts(BuildingData buildingData)
     {
-        if (buildingData == null)
-        {
-            Debug.LogError("Building data is null.");
-            return;
-        }
-
         UpdateUpgradeText(buildingData);
         UpdateRepairText(buildingData);
         UpdateUpgradeCost(buildingData);
@@ -174,49 +120,49 @@ public class CanvasManager : MonoBehaviour
 
     private void UpdateUpgradeText(BuildingData buildingData)
     {
-        if (upgradeText != null)
+        if (upgradeText != null && buildingData != null)
         {
             upgradeText.text = buildingData.upgradeDescription;
         }
         else
         {
-            Debug.LogError("Upgrade text is null.");
+            Debug.LogError("Upgrade text or building data is null.");
         }
     }
 
     private void UpdateRepairText(BuildingData buildingData)
     {
-        if (repairText != null)
+        if (repairText != null && buildingData != null)
         {
             repairText.text = buildingData.repairDescription;
         }
         else
         {
-            Debug.LogError("Repair text is null.");
+            Debug.LogError("Repair text or building data is null.");
         }
     }
 
     private void UpdateUpgradeCost(BuildingData buildingData)
     {
-        if (upgradeCostText != null)
+        if (upgradeCostText != null && buildingData != null)
         {
             upgradeCostText.text = "Upgrade Cost: " + buildingData.upgradeCost;
         }
         else
         {
-            Debug.LogError("Upgrade cost text is null.");
+            Debug.LogError("Upgrade cost text or building data is null.");
         }
     }
 
     private void UpdateRepairCost(BuildingData buildingData)
     {
-        if (repairCostText != null)
+        if (repairCostText != null && buildingData != null)
         {
             repairCostText.text = "Repair Cost: " + buildingData.repairCost;
         }
         else
         {
-            Debug.LogError("Repair cost text is null.");
+            Debug.LogError("Repair cost text or building data is null.");
         }
     }
     #endregion

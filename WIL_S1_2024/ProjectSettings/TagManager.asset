@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - RepairConfirmationCanvas
-  - UpgradeConfirmationCanvas
-  - WaterPump
-  - Generator
+  tags: []
   layers:
   - Default
   - TransparentFX
