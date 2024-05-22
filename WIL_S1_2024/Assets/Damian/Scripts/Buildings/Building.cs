@@ -38,7 +38,7 @@ public class Building : MonoBehaviour
 
         if (buildingInfoText != null)
         {
-            UpdateBuildingInfoText();
+            UpdateBuildingInfoText(); // Initialize the text with building info
         }
     }
 
@@ -57,7 +57,7 @@ public class Building : MonoBehaviour
 
         if (buildingData != null && buildingData.status == BuildingData.BuildingStatus.Working)
         {
-            // Implement resource production logic here?
+            // Implement resource production logic here
         }
     }
     #endregion
