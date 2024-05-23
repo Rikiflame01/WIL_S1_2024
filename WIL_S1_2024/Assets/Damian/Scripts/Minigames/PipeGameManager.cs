@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PipeGameManager : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class PipeGameManager : MonoBehaviour
 
     private int[] pipeStates;
     private int totalPipes;
+    private Dictionary<int, Coroutine> activeCoroutines = new Dictionary<int, Coroutine>();
+    private Dictionary<int, Quaternion> targetRotations = new Dictionary<int, Quaternion>();
 
     void Start()
     {
@@ -37,6 +40,7 @@ public class PipeGameManager : MonoBehaviour
         {
             int index = i;
             pipeButtons[i].onClick.AddListener(() => RotatePipe(index));
+            targetRotations[i] = pipeButtons[i].transform.rotation;
         }
 
         messagePanel.SetActive(false);
@@ -46,24 +50,30 @@ public class PipeGameManager : MonoBehaviour
     private void RotatePipe(int index)
     {
         pipeStates[index] = (pipeStates[index] + 1) % 4;
-        StartCoroutine(SmoothRotate(pipeButtons[index].transform, 90));
+        targetRotations[index] *= Quaternion.Euler(0, 0, 90);
+
+        if (activeCoroutines.ContainsKey(index))
+        {
+            StopCoroutine(activeCoroutines[index]);
+        }
+
+        activeCoroutines[index] = StartCoroutine(SmoothRotate(pipeButtons[index].transform, targetRotations[index]));
         CheckPipesAlignment();
     }
 
-    private IEnumerator SmoothRotate(Transform target, float angle)
+    private IEnumerator SmoothRotate(Transform target, Quaternion targetRotation)
     {
         Quaternion startRotation = target.rotation;
-        Quaternion endRotation = startRotation * Quaternion.Euler(0, 0, angle);
         float elapsedTime = 0;
 
         while (elapsedTime < rotationDuration)
         {
-            target.rotation = Quaternion.Slerp(startRotation, endRotation, elapsedTime / rotationDuration);
+            target.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime / rotationDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        target.rotation = endRotation;
+        target.rotation = targetRotation;
     }
 
     private void GenerateMap()
@@ -91,6 +101,7 @@ public class PipeGameManager : MonoBehaviour
 
             pipeStates[i] = Random.Range(1, 4);
             pipeButtons[i].transform.rotation = Quaternion.Euler(0, 0, 90 * pipeStates[i]);
+            targetRotations[i] = pipeButtons[i].transform.rotation;
         }
     }
 
