@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class WaterPumpMinigameCanvasManager : MonoBehaviour
 {
+    public BuildingData buildingData;
+
     [Tooltip("The canvas to be enabled when the button is clicked.")]
     [SerializeField] private Canvas waterPumpMinigameCanvas;
 
@@ -29,6 +31,10 @@ public class WaterPumpMinigameCanvasManager : MonoBehaviour
 
     private void OnTriggerButtonClicked()
     {
-        waterPumpMinigameCanvas.gameObject.SetActive(true);
+        if (buildingData.status == BuildingData.BuildingStatus.Broken)
+        {
+            waterPumpMinigameCanvas.gameObject.SetActive(true);
+        }
+
     }
 }

@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 
 public class PipeGameManager : MonoBehaviour
 {
+    public BuildingData buildingData;
+
     [Tooltip("Button representing the start of the pipe route.")]
     public Button startButton;
 
@@ -25,10 +26,12 @@ public class PipeGameManager : MonoBehaviour
     private int totalPipes;
     private Dictionary<int, Coroutine> activeCoroutines = new Dictionary<int, Coroutine>();
     private Dictionary<int, Quaternion> targetRotations = new Dictionary<int, Quaternion>();
+    private Canvas parentCanvas;
 
     void Start()
     {
         InitializeGame();
+        parentCanvas = GetComponentInParent<Canvas>();
     }
 
     private void InitializeGame()
@@ -121,5 +124,14 @@ public class PipeGameManager : MonoBehaviour
             }
         }
         messagePanel.SetActive(true);
+        StartCoroutine(ShowMessagePanel());
+    }
+
+    private IEnumerator ShowMessagePanel()
+    {
+        yield return new WaitForSeconds(5f);
+        messagePanel.SetActive(false);
+        parentCanvas.gameObject.SetActive(false);
+        buildingData.status = BuildingData.BuildingStatus.Working;
     }
 }

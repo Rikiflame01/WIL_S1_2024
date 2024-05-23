@@ -3024,6 +3024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1313a2ec6b2bc4eafa33357808eecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingData: {fileID: 11400000, guid: 9704c2100e4213a4f9e229ee9e8e9733, type: 2}
   startButton: {fileID: 352935238}
   endButton: {fileID: 412555492}
   pipeButtons:
@@ -3087,6 +3088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebdfe24e2bf07045accf9eddd9ff138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingData: {fileID: 11400000, guid: 9704c2100e4213a4f9e229ee9e8e9733, type: 2}
   waterPumpMinigameCanvas: {fileID: 1506085614}
   triggerButton: {fileID: 398080373}
 --- !u!1 &1506085611
