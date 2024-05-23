@@ -919,7 +919,7 @@ PrefabInstance:
     - target: {fileID: 9081909753335306360, guid: caa278db9152a6b478f7ba7fe835a2da, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 11400000, guid: 4c2d330f982625449ae84d3caeb06341, type: 2}
+      objectReference: {fileID: 903786294}
     - target: {fileID: 9081909753335306360, guid: caa278db9152a6b478f7ba7fe835a2da, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
@@ -958,7 +958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: caa278db9152a6b478f7ba7fe835a2da, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: Upgrade
+      value: UpgradeBuilding
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: caa278db9152a6b478f7ba7fe835a2da, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
@@ -978,7 +978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: caa278db9152a6b478f7ba7fe835a2da, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: BuildingData, Assembly-CSharp
+      value: Building, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: caa278db9152a6b478f7ba7fe835a2da, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName

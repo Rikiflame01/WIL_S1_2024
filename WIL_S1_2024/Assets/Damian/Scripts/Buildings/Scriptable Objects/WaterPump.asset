@@ -13,11 +13,17 @@ MonoBehaviour:
   m_Name: WaterPump
   m_EditorClassIdentifier: 
   buildingName: WaterPump
-  status: 0
-  level: 0
+  status: 1
+  baseOutput: 0
+  outputPerLevel: 1
+  currentOutput: 1
+  level: 1
   resourceProduced: Water
   resourceInterval: 60
   repairCost: 15
   upgradeCost: 20
   upgradeDescription: This increases the production of water
   repairDescription: This fixes the water pump!
+  producedResource: 1
+  buildingScript: {fileID: 0}
+  idleGainAmount: 5
