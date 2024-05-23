@@ -5,6 +5,9 @@ public class BuildingData : ScriptableObject
 {
     public string buildingName;
     public BuildingStatus status;
+    public float baseOutput; //ase output when built
+    public float outputPerLevel = 1; //Additional output per upgrade
+    public int currentOutput; 
     public int level;
     public string resourceProduced;
     public float resourceInterval;
@@ -12,6 +15,12 @@ public class BuildingData : ScriptableObject
     public int upgradeCost;
     public string upgradeDescription;
     public string repairDescription;
+    
+    public enum ResourceType { Rand, Water, Electricity }
+    public ResourceType producedResource;
+    public Building buildingScript;
+    public int idleGainAmount = 1;
+    
 
     public string GetBuildingInfo()
     {
@@ -26,5 +35,16 @@ public class BuildingData : ScriptableObject
     {
         Broken,
         Working
+    }
+    public void Upgrade()
+    {
+        level++;
+        idleGainAmount++;
+        currentOutput = (int)(baseOutput + (outputPerLevel * level));
+    }
+
+    public int GetCurrentOutput()
+    {
+        throw new System.NotImplementedException();
     }
 }
