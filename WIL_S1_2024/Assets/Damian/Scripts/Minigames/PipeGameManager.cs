@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public class PipeGameManager : MonoBehaviour
 {
-    public BuildingData buildingData;
-
     [Tooltip("Button representing the start of the pipe route.")]
     public Button startButton;
 
@@ -132,6 +130,5 @@ public class PipeGameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         messagePanel.SetActive(false);
         parentCanvas.gameObject.SetActive(false);
-        buildingData.status = BuildingData.BuildingStatus.Working;
     }
 }
