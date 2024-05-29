@@ -19,7 +19,10 @@ public class IdleResources : MonoBehaviour
 
     // Idle Resource Gain
     private float timer = 0f;
-    public float idleGainInterval = 10f; 
+    public float idleGainInterval = 10f;
+    public Building buildingScript;
+    public BuildingData buildingDataScript;
+
 
     private void Awake()
     {
@@ -116,6 +119,22 @@ public class IdleResources : MonoBehaviour
         if (electricityAmountText != null)
         {
             electricityAmountText.text = electricity.ToString();
+        }
+    }
+    public void OnRepairButtonClick()
+    {
+        Debug.Log("repair clcked");
+        if (rand>= buildingDataScript.repairCost)
+        {
+            rand -= buildingDataScript.repairCost;
+            buildingScript.RepairBuilding(); 
+            
+            UpdateTexts();
+        }
+        else
+        {
+            //Not enough gold or building already repaired
+            Debug.Log("Cannot repair. Insufficient gold or building is already repaired.");
         }
     }
 

@@ -147,7 +147,7 @@ public class CanvasManager : MonoBehaviour
     {
         if (upgradeCostText != null && buildingData != null)
         {
-            upgradeCostText.text = "Upgrade Cost: " + buildingData.upgradeCost;
+            upgradeCostText.text = "Upgrade Cost: " + buildingData.initialUpgradeCost;
         }
         else
         {

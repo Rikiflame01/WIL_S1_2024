@@ -20,8 +20,9 @@ MonoBehaviour:
   level: 1
   resourceProduced: Water
   resourceInterval: 60
-  repairCost: 15
-  upgradeCost: 20
+  repairCost: 10
+  initialUpgradeCost: 20
+  upgradeCostIncrease: 50
   upgradeDescription: This increases the production of water
   repairDescription: This fixes the water pump!
   producedResource: 1

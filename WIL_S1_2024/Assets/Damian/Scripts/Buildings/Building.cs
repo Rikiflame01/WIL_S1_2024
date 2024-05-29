@@ -136,7 +136,7 @@ public class Building : MonoBehaviour
     }
     private bool CanAffordUpgrade()
     {
-        return IdleResources.Instance.rand >= buildingData.upgradeCost;  
+        return IdleResources.Instance.rand >= buildingData.initialUpgradeCost;  
     }
     
     public void RepairBuilding()
@@ -155,7 +155,7 @@ public class Building : MonoBehaviour
             return;
         }
 
-        if (!CanAffordRepair())
+        if (CanAffordRepair())
         {
             //call a function to deduct cost
 

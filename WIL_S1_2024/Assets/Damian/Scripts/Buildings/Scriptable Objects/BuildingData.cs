@@ -12,7 +12,10 @@ public class BuildingData : ScriptableObject
     public string resourceProduced;
     public float resourceInterval;
     public int repairCost;
-    public int upgradeCost;
+
+    public int initialUpgradeCost = 20;  
+    public int upgradeCostIncrease = 50;
+
     public string upgradeDescription;
     public string repairDescription;
     
