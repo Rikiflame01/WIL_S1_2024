@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaterPump
   m_EditorClassIdentifier: 
   buildingName: WaterPump
-  status: 1
+  status: 0
   baseOutput: 0
   outputPerLevel: 1
   currentOutput: 1
