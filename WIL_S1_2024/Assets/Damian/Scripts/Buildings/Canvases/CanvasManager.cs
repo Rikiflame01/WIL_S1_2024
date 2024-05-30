@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
-
+using System.Linq;
+using System.Collections;
 public class CanvasManager : MonoBehaviour
 {
     #region Variables
@@ -146,7 +147,7 @@ public class CanvasManager : MonoBehaviour
     {
         if (upgradeCostText != null && buildingData != null)
         {
-            upgradeCostText.text = "Upgrade Cost: " + buildingData.upgradeCost;
+            upgradeCostText.text = "Upgrade Cost: " + buildingData.initialUpgradeCost;
         }
         else
         {
@@ -163,6 +164,35 @@ public class CanvasManager : MonoBehaviour
         else
         {
             Debug.LogError("Repair cost text or building data is null.");
+        }
+    }
+    public void UpgradeCurrentBuilding()
+    {
+        if (currentBuildingData == null)
+            return;
+
+        //Find the building script in the scene that matches the currentBuildingData
+        Building buildingScript = FindObjectsOfType<Building>() // Get all Building objects
+            .FirstOrDefault(b => b.buildingData == currentBuildingData); // Find the first match
+
+        if (buildingScript != null)
+        {
+            buildingScript.UpgradeBuilding();
+        }
+        else
+        {
+            Debug.LogWarning("Building script not found for the selected building data.");
+        }
+    }
+    public void RepairCurrentBuilding()
+    {
+        if (currentBuildingData == null)
+            return;
+
+        
+        Building buildingScript = FindObjectOfType<Building>(); 
+        {
+            buildingScript.RepairBuilding();
         }
     }
     #endregion

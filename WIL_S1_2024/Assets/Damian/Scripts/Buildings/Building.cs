@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 /// <summary>
 /// Manages building interactions, including displaying information and toggling canvas visibility.
@@ -38,7 +39,7 @@ public class Building : MonoBehaviour
 
         if (buildingInfoText != null)
         {
-            UpdateBuildingInfoText(); // Initialize the text with building info
+            UpdateBuildingInfoText();
         }
     }
 
@@ -57,7 +58,7 @@ public class Building : MonoBehaviour
 
         if (buildingData != null && buildingData.status == BuildingData.BuildingStatus.Working)
         {
-            // Implement resource production logic here
+            // Implement resource production logic here?
         }
     }
     #endregion
@@ -105,5 +106,83 @@ public class Building : MonoBehaviour
             }
         }
     }
+    public void UpgradeBuilding()
+    {
+        //Upgrade Conditions
+        if (buildingData.status != BuildingData.BuildingStatus.Working)
+        {
+            Debug.LogWarning("Cannot upgrade a broken building.");
+            return; //Exit if the building is broken
+        }
+        
+        //Resource Cost Check
+        if (!CanAffordUpgrade())
+        {
+            Debug.LogWarning("Not enough resources to upgrade!");
+            return;
+        }
+
+        if (CanAffordUpgrade())
+        {
+            //Upgrade Building
+            buildingData.Upgrade();
+            UpdateBuildingInfoText();
+            Debug.Log(buildingData.buildingName + " upgraded to level " + buildingData.level);
+            //call a function to deduct cost
+        }
+
+        
+       
+    }
+    private bool CanAffordUpgrade()
+    {
+        return IdleResources.Instance.rand >= buildingData.initialUpgradeCost;  
+    }
+    
+    public void RepairBuilding()
+    {
+        
+        if (buildingData.status != BuildingData.BuildingStatus.Broken)
+        {
+            Debug.LogWarning("Building is not broken.");
+            return; // Exit if the building is not broken
+        }
+
+        
+        if (!CanAffordRepair())
+        {
+            Debug.LogWarning("Not enough resources to repair!");
+            return;
+        }
+
+        if (CanAffordRepair())
+        {
+            //call a function to deduct cost
+
+            //Repair Building 
+            buildingData.status = BuildingData.BuildingStatus.Working;
+            StopCoroutine(ProduceResource());
+            StartCoroutine(ProduceResource());
+
+        
+            UpdateBuildingInfoText();
+            Debug.Log(buildingData.buildingName + " repaired!");
+        }
+       
+    }
+
+    private bool CanAffordRepair()
+    {
+        return IdleResources.Instance.rand >= buildingData.repairCost;
+    }
+    private IEnumerator ProduceResource()
+    {
+        while (buildingData.status == BuildingData.BuildingStatus.Working)
+        {
+            yield return new WaitForSeconds(buildingData.resourceInterval);
+            IdleResources.Instance.AddResource(buildingData.producedResource, buildingData.GetCurrentOutput());
+        }
+    }
+   
     #endregion
 }
