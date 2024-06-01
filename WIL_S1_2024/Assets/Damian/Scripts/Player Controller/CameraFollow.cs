@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class CameraFollow : MonoBehaviour
     [Tooltip("Smoothness factor for camera movement.")]
     public float smoothSpeed = 0.125f;
 
+    [Tooltip("Layer for objects that can obstruct the view.")]
+    public LayerMask obstructionLayer;
+
+    private List<Renderer> obstructedRenderers = new List<Renderer>();
+
     private void LateUpdate()
     {
         if (player != null)
@@ -21,5 +27,36 @@ public class CameraFollow : MonoBehaviour
 
             transform.LookAt(player);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (IsInObstructionLayer(other.gameObject))
+        {
+            Renderer renderer = other.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.enabled = false;
+                obstructedRenderers.Add(renderer);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (IsInObstructionLayer(other.gameObject))
+        {
+            Renderer renderer = other.GetComponent<Renderer>();
+            if (renderer != null && obstructedRenderers.Contains(renderer))
+            {
+                renderer.enabled = true;
+                obstructedRenderers.Remove(renderer);
+            }
+        }
+    }
+
+    private bool IsInObstructionLayer(GameObject obj)
+    {
+        return ((1 << obj.layer) & obstructionLayer.value) != 0;
     }
 }
