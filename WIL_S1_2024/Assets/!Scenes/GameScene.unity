@@ -13662,6 +13662,8 @@ MonoBehaviour:
   obstructionLayer:
     serializedVersion: 2
     m_Bits: 128
+  targetAlpha: 0.3
+  transparencyLerpSpeed: 20
 --- !u!65 &1139120043
 BoxCollider:
   m_ObjectHideFlags: 0
