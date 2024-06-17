@@ -25,6 +25,6 @@ MonoBehaviour:
   upgradeCostIncrease: 50
   upgradeDescription: Upgrade this building to increase the amount of cash you generate
   repairDescription: 
-  producedResource: 1
+  producedResource: 0
   buildingScript: {fileID: 0}
   idleGainAmount: 1
