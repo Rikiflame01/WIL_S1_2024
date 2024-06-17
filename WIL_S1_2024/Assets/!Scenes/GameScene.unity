@@ -1944,6 +1944,10 @@ PrefabInstance:
       value: SO info
       objectReference: {fileID: 0}
     - target: {fileID: 2806223821438400420, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1139120040}
+    - target: {fileID: 2806223821438400420, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -7711,6 +7715,10 @@ PrefabInstance:
       value: SO info
       objectReference: {fileID: 0}
     - target: {fileID: 2806223821438400420, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1139120040}
+    - target: {fileID: 2806223821438400420, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -9974,7 +9982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306194569770577938, guid: caa278db9152a6b478f7ba7fe835a2da, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 306194569770577938, guid: caa278db9152a6b478f7ba7fe835a2da, type: 3}
       propertyPath: m_ReferenceResolution.x
@@ -13583,6 +13591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SO info
       objectReference: {fileID: 0}
+    - target: {fileID: 2806223821438400420, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1139120040}
     - target: {fileID: 2806223821438400420, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_Enabled
       value: 0
