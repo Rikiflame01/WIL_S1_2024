@@ -4,27 +4,27 @@ using UnityEngine.UI;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Unity.Services.CloudSave;
 
 public class LoginManager : MonoBehaviour
 {
     [Header("Sign-Up UI")]
-    public GameObject signUpCanvas;
+    public Canvas signUpCanvas;
     public TMP_InputField signUpUsernameInput;
     public TMP_InputField signUpPasswordInput;
     public Button signUpButton;
     public TMP_Text signUpFeedbackText;
 
     [Header("Sign-In UI")]
-    public GameObject signInCanvas;
+    public Canvas signInCanvas;
     public TMP_InputField signInUsernameInput;
     public TMP_InputField signInPasswordInput;
     public Button signInButton;
     public TMP_Text signInFeedbackText;
 
     [Header("Main Canvas")]
-    public GameObject mainCanvas;
+    public Canvas mainCanvas;
+
+    private UserManager userManager;
 
     private void Start()
     {
@@ -34,6 +34,9 @@ public class LoginManager : MonoBehaviour
         // Add listeners to buttons
         signUpButton.onClick.AddListener(OnSignUpButtonClicked);
         signInButton.onClick.AddListener(OnSignInButtonClicked);
+
+        // Get reference to UserManager
+        userManager = FindObjectOfType<UserManager>();
     }
 
     private async void InitializeUnityServices()
@@ -64,11 +67,15 @@ public class LoginManager : MonoBehaviour
             signUpFeedbackText.text = "Sign-Up is successful.";
             Debug.Log("Sign-Up is successful.");
 
-            // Save initial user data
-            await SaveUserData(username);
+            // Save user data
+            await userManager.SaveUserData(username);
 
-            // Show the sign-in canvas and hide the sign-up canvas
-            ShowSignInCanvas();
+            // Retrieve and display user data immediately after saving
+            await userManager.RetrieveUserData();
+
+            // Show the main canvas and hide the sign-up canvas
+            CanvasToggle.Instance.DisableCanvas(signUpCanvas);
+            CanvasToggle.Instance.EnableCanvas(mainCanvas);
         }
         catch (AuthenticationException ex)
         {
@@ -90,8 +97,12 @@ public class LoginManager : MonoBehaviour
             signInFeedbackText.text = "Sign-In is successful.";
             Debug.Log("Sign-In is successful.");
 
+            // Retrieve and display user data
+            await userManager.RetrieveUserData();
+
             // Show the main canvas and hide the sign-in canvas
-            ShowMainCanvas();
+            CanvasToggle.Instance.DisableCanvas(signInCanvas);
+            CanvasToggle.Instance.EnableCanvas(mainCanvas);
         }
         catch (AuthenticationException ex)
         {
@@ -102,45 +113,6 @@ public class LoginManager : MonoBehaviour
         {
             signInFeedbackText.text = $"Sign-In Failed: {ex.Message}";
             Debug.LogException(ex);
-        }
-    }
-
-    public void ShowSignInCanvas()
-    {
-        signUpCanvas.SetActive(false);
-        signInCanvas.SetActive(true);
-        mainCanvas.SetActive(false);
-    }
-
-    public void ShowSignUpCanvas()
-    {
-        signUpCanvas.SetActive(true);
-        signInCanvas.SetActive(false);
-        mainCanvas.SetActive(false);
-    }
-
-    private void ShowMainCanvas()
-    {
-        signUpCanvas.SetActive(false);
-        signInCanvas.SetActive(false);
-        mainCanvas.SetActive(true);
-    }
-
-    private async Task SaveUserData(string username)
-    {
-        try
-        {
-            var data = new Dictionary<string, object>
-            {
-                { "username", username },
-                { "signupTime", System.DateTime.UtcNow.ToString() }
-            };
-            await CloudSaveService.Instance.Data.ForceSaveAsync(data);
-            Debug.Log("User data saved successfully");
-        }
-        catch (CloudSaveException ex)
-        {
-            Debug.LogError($"Failed to save user data: {ex.Message}");
         }
     }
 }
