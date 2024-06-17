@@ -13,11 +13,18 @@ MonoBehaviour:
   m_Name: Bank
   m_EditorClassIdentifier: 
   buildingName: Bank
-  status: 1
+  status: 0
+  baseOutput: 0
+  outputPerLevel: 1
+  currentOutput: 1
   level: 1
   resourceProduced: Rand
   resourceInterval: 60
   repairCost: 0
-  upgradeCost: 30
+  initialUpgradeCost: 20
+  upgradeCostIncrease: 50
   upgradeDescription: Upgrade this building to increase the amount of cash you generate
   repairDescription: 
+  producedResource: 1
+  buildingScript: {fileID: 0}
+  idleGainAmount: 1

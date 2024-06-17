@@ -19,7 +19,7 @@ public class IdleResources : MonoBehaviour
 
     // Idle Resource Gain
     private float timer = 0f;
-    public float idleGainInterval = 10f;
+    public float idleGainInterval = 3f;
     private Building buildingScript;
     private BuildingData buildingDataScript;
 
