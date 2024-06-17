@@ -53,7 +53,7 @@ public class CanvasManager : MonoBehaviour
     public void SetBuildingData(BuildingData buildingData)
     {
         currentBuildingData = buildingData;
-        Debug.Log("BuildingData set: " + buildingData.buildingName);
+        //Debug.Log("BuildingData set: " + buildingData.buildingName);
         UpdateCanvasTexts(buildingData);
     }
 
