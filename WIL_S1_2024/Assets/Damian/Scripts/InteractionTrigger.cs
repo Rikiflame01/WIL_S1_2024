@@ -37,7 +37,7 @@ public class InteractionTrigger : MonoBehaviour
                 if (buildingData != null)
                 {
                     BuildingEventManager.SelectBuilding(buildingData);
-                    Debug.Log("Building selected: " + buildingData.buildingName);
+                    //Debug.Log("Building selected: " + buildingData.buildingName);
                 }
                 else
                 {

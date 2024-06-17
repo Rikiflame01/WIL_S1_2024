@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [Tooltip("Movement speed of the player.")]
-    public float speed = 5f;
+    public float speed = 3f;
 
     [Tooltip("Rotation speed of the player.")]
     public float rotationSpeed = 10f;
@@ -15,15 +15,18 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Reference to the main camera.")]
     public Transform cameraTransform;
 
-    private PlayerInput playerInput;
+    private PlayerControls playerInput;
     private InputAction moveAction;
+
     private Vector2 moveInput;
     private Rigidbody rb;
+    private Animator animator;
 
     private void Awake()
     {
-        playerInput = new PlayerInput();
+        playerInput = new PlayerControls();
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -42,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+        bool isRunning = moveInput.magnitude > 0;
+        animator.SetBool("isRunning", isRunning);
     }
 
     private void FixedUpdate()
@@ -68,4 +73,32 @@ public class PlayerMovement : MonoBehaviour
             rb.MoveRotation(Quaternion.Lerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
         }
     }
+
+    // To setup dancing and thinking animations.
+/*
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+        if (collision.gameObject.CompareTag("DanceTrigger"))
+        {
+            animator.SetBool("isDancing", true);
+        }
+        else if (collision.gameObject.CompareTag("ThinkTrigger"))
+        {
+            animator.SetBool("isThinking", true);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("DanceTrigger"))
+        {
+            animator.SetBool("isDancing", false);
+        }
+        else if (collision.gameObject.CompareTag("ThinkTrigger"))
+        {
+            animator.SetBool("isThinking", false);
+        }
+    }
+*/
 }
