@@ -13658,7 +13658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 940594424}
   offset: {x: 0, y: 0.75, z: -2}
-  smoothSpeed: 0.8
+  smoothSpeed: 1
   obstructionLayer:
     serializedVersion: 2
     m_Bits: 128
