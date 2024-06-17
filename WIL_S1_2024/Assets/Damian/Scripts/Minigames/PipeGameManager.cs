@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class PipeGameManager : MonoBehaviour
 {
+
     [Tooltip("Button representing the start of the pipe route.")]
     public Button startButton;
 
@@ -127,6 +128,7 @@ public class PipeGameManager : MonoBehaviour
 
     private IEnumerator ShowMessagePanel()
     {
+        IdleResources.Instance.water += 100;
         yield return new WaitForSeconds(5f);
         messagePanel.SetActive(false);
         parentCanvas.gameObject.SetActive(false);
