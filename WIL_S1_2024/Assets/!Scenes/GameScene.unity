@@ -19742,7 +19742,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 940594424}
   offset: {x: 0, y: 0.75, z: -2}
-  smoothSpeed: 1
+  smoothSpeed: 7
+  rotationSpeed: 10
 --- !u!65 &1139120043
 BoxCollider:
   m_ObjectHideFlags: 0
