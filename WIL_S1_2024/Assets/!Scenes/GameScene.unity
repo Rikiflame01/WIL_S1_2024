@@ -13313,7 +13313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -13365,6 +13365,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
@@ -15442,7 +15446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306194569770577938, guid: caa278db9152a6b478f7ba7fe835a2da, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 306194569770577938, guid: caa278db9152a6b478f7ba7fe835a2da, type: 3}
       propertyPath: m_ReferenceResolution.x
@@ -20462,6 +20466,9 @@ MonoBehaviour:
   buildingCanvas: {fileID: 617158539}
   mainCamera: {fileID: 1139120040}
   buildingInfoText: {fileID: 640622530}
+  premiumFixTime: 120
+  minTimeTillBreakDown: 30
+  maxTimeTillBreakDown: 60
 --- !u!1001 &1173973375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21044,6 +21051,9 @@ MonoBehaviour:
   buildingCanvas: {fileID: 395436809}
   mainCamera: {fileID: 1139120040}
   buildingInfoText: {fileID: 2134173676}
+  premiumFixTime: 120
+  minTimeTillBreakDown: 30
+  maxTimeTillBreakDown: 60
 --- !u!1001 &1251339986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26860,6 +26870,9 @@ MonoBehaviour:
   buildingCanvas: {fileID: 150842979}
   mainCamera: {fileID: 1139120040}
   buildingInfoText: {fileID: 1256709593}
+  premiumFixTime: 120
+  minTimeTillBreakDown: 30
+  maxTimeTillBreakDown: 60
 --- !u!65 &1734728534
 BoxCollider:
   m_ObjectHideFlags: 0

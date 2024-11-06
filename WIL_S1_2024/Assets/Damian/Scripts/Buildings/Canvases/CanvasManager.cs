@@ -184,7 +184,7 @@ public class CanvasManager : MonoBehaviour
             Debug.LogWarning("Building script not found for the selected building data.");
         }
     }
-    public void RepairCurrentBuilding()
+    public void RepairCurrentBuilding(bool isPremium)
     {
         if (currentBuildingData == null)
             return;

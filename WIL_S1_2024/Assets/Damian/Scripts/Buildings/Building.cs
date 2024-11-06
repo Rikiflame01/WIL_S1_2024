@@ -1,6 +1,6 @@
-using UnityEngine;
-using TMPro;
 using System.Collections;
+using TMPro;
+using UnityEngine;
 
 /// <summary>
 /// Manages building interactions, including displaying information and toggling canvas visibility.
@@ -22,11 +22,19 @@ public class Building : MonoBehaviour
     public TextMeshProUGUI buildingInfoText;
 
     private bool isPlayerNearby;
+
+    [Header("Break Down Stuff")]
+    [SerializeField] private float premiumFixTime = 120f;
+    //[SerializeField] private float regularFixTime;
+    [SerializeField] private float minTimeTillBreakDown = 30;
+    [SerializeField] private float maxTimeTillBreakDown = 60;
+
     #endregion
 
     #region Unity Methods
     void Start()
     {
+        StartCoroutine(RepairBuildingCoroutine());
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
@@ -114,7 +122,7 @@ public class Building : MonoBehaviour
             Debug.LogWarning("Cannot upgrade a broken building.");
             return; //Exit if the building is broken
         }
-        
+
         //Resource Cost Check
         if (!CanAffordUpgrade())
         {
@@ -131,24 +139,47 @@ public class Building : MonoBehaviour
             //call a function to deduct cost
         }
 
-        
-       
+
+
     }
     private bool CanAffordUpgrade()
     {
-        return IdleResources.Instance.rand >= buildingData.initialUpgradeCost;  
+        return IdleResources.Instance.rand >= buildingData.initialUpgradeCost;
     }
-    
+
+
+    private IEnumerator RepairBuildingCoroutine()
+    {
+
+        buildingData.status = BuildingData.BuildingStatus.Working;
+        Debug.Log("Building is now working.");
+        float totalRepairTime;
+
+        float randomTime = Random.Range(minTimeTillBreakDown, maxTimeTillBreakDown);
+
+        totalRepairTime = premiumFixTime + randomTime;
+
+
+
+
+
+        yield return new WaitForSeconds(totalRepairTime);
+
+
+        buildingData.status = BuildingData.BuildingStatus.Broken;
+        Debug.Log("Building has broken again after repair time elapsed.");
+    }
+
     public void RepairBuilding()
     {
-        
+
         if (buildingData.status != BuildingData.BuildingStatus.Broken)
         {
             Debug.LogWarning("Building is not broken.");
             return; // Exit if the building is not broken
         }
 
-        
+
         if (!CanAffordRepair())
         {
             Debug.LogWarning("Not enough resources to repair!");
@@ -160,15 +191,16 @@ public class Building : MonoBehaviour
             //call a function to deduct cost
 
             //Repair Building 
-            buildingData.status = BuildingData.BuildingStatus.Working;
+            //buildingData.status = BuildingData.BuildingStatus.Working;
+            StartCoroutine(RepairBuildingCoroutine());
             StopCoroutine(ProduceResource());
             StartCoroutine(ProduceResource());
 
-        
+
             UpdateBuildingInfoText();
             Debug.Log(buildingData.buildingName + " repaired!");
         }
-       
+
     }
 
     private bool CanAffordRepair()
@@ -183,6 +215,6 @@ public class Building : MonoBehaviour
             IdleResources.Instance.AddResource(buildingData.producedResource, buildingData.GetCurrentOutput());
         }
     }
-   
+
     #endregion
 }

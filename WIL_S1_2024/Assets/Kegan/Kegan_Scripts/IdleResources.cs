@@ -1,13 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
 using System.Linq;
+using TMPro;
+using UnityEngine;
+using System.Collections;
 
 public class IdleResources : MonoBehaviour
 {
-    public static IdleResources Instance { get; private set; } 
+    public static IdleResources Instance { get; private set; }
 
     // Resource Amounts and UI Texts
     public TMP_Text randAmountText;
@@ -23,10 +21,10 @@ public class IdleResources : MonoBehaviour
     private Building buildingScript;
     private BuildingData buildingDataScript;
 
-
+    
     private void Awake()
     {
-        
+
         if (Instance == null)
         {
             Instance = this;
@@ -45,7 +43,7 @@ public class IdleResources : MonoBehaviour
         if (timer >= idleGainInterval)
         {
             timer = 0f;
-            AddResource(BuildingData.ResourceType.Rand, 0); 
+            AddResource(BuildingData.ResourceType.Rand, 0);
             AddResource(BuildingData.ResourceType.Water, 0);
             AddResource(BuildingData.ResourceType.Electricity, 0);
         }
@@ -54,28 +52,37 @@ public class IdleResources : MonoBehaviour
     public void AddResource(BuildingData.ResourceType type, int amount)
     {
         Building building = FindObjectsOfType<Building>().FirstOrDefault(b => b.buildingData.producedResource == type);
+
         if (building != null)
         {
-            amount = building.buildingData.currentOutput; 
-            switch (type)
+            if (building.buildingData.status == BuildingData.BuildingStatus.Broken)
             {
-                case BuildingData.ResourceType.Rand:
-                    rand += amount;
-                    break;
-                case BuildingData.ResourceType.Water:
-                    water += amount;
-                    break;
-                case BuildingData.ResourceType.Electricity:
-                    electricity += amount;
-                    break;
+                Debug.Log(building.name + " is broken");
             }
+            else
+            {
+                amount = building.buildingData.currentOutput;
+                switch (type)
+                {
+                    case BuildingData.ResourceType.Rand:
+                        rand += amount;
+                        break;
+                    case BuildingData.ResourceType.Water:
+                        water += amount;
+                        break;
+                    case BuildingData.ResourceType.Electricity:
+                        electricity += amount;
+                        break;
+                }
+            }
+
         }
         else
         {
             Debug.LogWarning($"No building found for resource type: {type}");
         }
 
-        UpdateTexts(); 
+        UpdateTexts();
     }
 
     public bool CanAffordUpgrade(int cost)
@@ -90,19 +97,19 @@ public class IdleResources : MonoBehaviour
             case BuildingData.ResourceType.Rand:
                 rand -= amount;
                 break;
-            //handle other resource types if needed
+                //handle other resource types if needed
         }
 
-        UpdateTexts(); 
+        UpdateTexts();
     }
-    
+
 
     public bool CanAffordRepair(int cost)
     {
-            return rand >= cost; 
+        return rand >= cost;
     }
 
-    
+
 
     private void UpdateTexts()
     {
@@ -124,11 +131,11 @@ public class IdleResources : MonoBehaviour
     public void OnRepairButtonClick()
     {
         Debug.Log("repair clcked");
-        if (rand>= buildingDataScript.repairCost)
+        if (rand >= buildingDataScript.repairCost)
         {
             rand -= buildingDataScript.repairCost;
-            buildingScript.RepairBuilding(); 
-            
+            buildingScript.RepairBuilding();
+
             UpdateTexts();
         }
         else
@@ -138,10 +145,11 @@ public class IdleResources : MonoBehaviour
         }
     }
 
-   
+    
 
-   
+
+
 }
 
-   
+
 
