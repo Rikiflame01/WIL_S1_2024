@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bank
   m_EditorClassIdentifier: 
   buildingName: Bank
-  status: 0
+  status: 1
   baseOutput: 0
   outputPerLevel: 1
   currentOutput: 1
