@@ -24,7 +24,7 @@ public class WaterPumpMinigameCanvasManager : MonoBehaviour
             return;
         }
 
-        waterPumpMinigameCanvas.gameObject.SetActive(false); // Ensure the canvas is initially disabled
+        waterPumpMinigameCanvas.gameObject.SetActive(false);
         triggerButton.onClick.AddListener(OnTriggerButtonClicked);
     }
 

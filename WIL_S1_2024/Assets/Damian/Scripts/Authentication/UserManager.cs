@@ -11,7 +11,6 @@ public class UserManager : MonoBehaviour
 
     private void Start()
     {
-        // Initialize Unity Services
         InitializeUnityServices();
     }
 

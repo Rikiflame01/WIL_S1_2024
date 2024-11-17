@@ -25,7 +25,6 @@ public class Building : MonoBehaviour
 
     [Header("Break Down Stuff")]
     [SerializeField] private float premiumFixTime = 120f;
-    //[SerializeField] private float regularFixTime;
     [SerializeField] private float minTimeTillBreakDown = 30;
     [SerializeField] private float maxTimeTillBreakDown = 60;
 
@@ -64,10 +63,6 @@ public class Building : MonoBehaviour
             ToggleCanvas();
         }
 
-        if (buildingData != null && buildingData.status == BuildingData.BuildingStatus.Working)
-        {
-            // Implement resource production logic here?
-        }
     }
     #endregion
 
@@ -136,7 +131,6 @@ public class Building : MonoBehaviour
             buildingData.Upgrade();
             UpdateBuildingInfoText();
             Debug.Log(buildingData.buildingName + " upgraded to level " + buildingData.level);
-            //call a function to deduct cost
         }
 
 

@@ -5,8 +5,8 @@ public class BuildingData : ScriptableObject
 {
     public string buildingName;
     public BuildingStatus status;
-    public float baseOutput; //ase output when built
-    public float outputPerLevel = 1; //Additional output per upgrade
+    public float baseOutput;
+    public float outputPerLevel = 1;
     public int currentOutput; 
     public int level;
     public string resourceProduced;

@@ -28,14 +28,11 @@ public class LoginManager : MonoBehaviour
 
     private void Start()
     {
-        // Initialize Unity Services
         InitializeUnityServices();
 
-        // Add listeners to buttons
         signUpButton.onClick.AddListener(OnSignUpButtonClicked);
         signInButton.onClick.AddListener(OnSignInButtonClicked);
 
-        // Get reference to UserManager
         userManager = FindObjectOfType<UserManager>();
     }
 
@@ -67,13 +64,10 @@ public class LoginManager : MonoBehaviour
             signUpFeedbackText.text = "Sign-Up is successful.";
             Debug.Log("Sign-Up is successful.");
 
-            // Save user data
             await userManager.SaveUserData(username);
 
-            // Retrieve and display user data immediately after saving
             await userManager.RetrieveUserData();
 
-            // Show the main canvas and hide the sign-up canvas
             CanvasToggle.Instance.DisableCanvas(signUpCanvas);
             CanvasToggle.Instance.EnableCanvas(mainCanvas);
         }
@@ -97,10 +91,8 @@ public class LoginManager : MonoBehaviour
             signInFeedbackText.text = "Sign-In is successful.";
             Debug.Log("Sign-In is successful.");
 
-            // Retrieve and display user data
             await userManager.RetrieveUserData();
 
-            // Show the main canvas and hide the sign-in canvas
             CanvasToggle.Instance.DisableCanvas(signInCanvas);
             CanvasToggle.Instance.EnableCanvas(mainCanvas);
         }
