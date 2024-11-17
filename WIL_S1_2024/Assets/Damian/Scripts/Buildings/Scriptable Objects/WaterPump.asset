@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: WaterPump
   m_EditorClassIdentifier: 
   buildingName: WaterPump
-  status: 0
+  status: 1
   baseOutput: 0
   outputPerLevel: 1
   currentOutput: 3
-  level: 3
+  level: 1
   resourceProduced: Water
   resourceInterval: 60
   repairCost: 10

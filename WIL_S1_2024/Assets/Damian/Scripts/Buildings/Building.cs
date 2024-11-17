@@ -7,7 +7,6 @@ using UnityEngine;
 /// </summary>
 public class Building : MonoBehaviour
 {
-
     #region Variables
     [Tooltip("Data for the building.")]
     public BuildingData buildingData;
@@ -33,6 +32,9 @@ public class Building : MonoBehaviour
     #region Unity Methods
     void Start()
     {
+        buildingData.level = 1;
+        buildingData.status = BuildingData.BuildingStatus.Working;
+        buildingData.currentOutput = 1;
         StartCoroutine(RepairBuildingCoroutine());
         if (mainCamera == null)
         {
@@ -67,48 +69,7 @@ public class Building : MonoBehaviour
     #endregion
 
     #region Private Methods
-    private void ToggleCanvas()
-    {
-        if (buildingCanvas != null)
-        {
-            buildingCanvas.enabled = !buildingCanvas.enabled;
 
-            if (buildingCanvas.enabled && buildingInfoText != null)
-            {
-                UpdateBuildingInfoText();
-            }
-        }
-    }
-
-    private void UpdateBuildingInfoText()
-    {
-        if (buildingInfoText != null && buildingData != null)
-        {
-            buildingInfoText.text = buildingData.GetBuildingInfo();
-        }
-    }
-    #endregion
-
-    #region Trigger Methods
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerNearby = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerNearby = false;
-            if (buildingCanvas != null)
-            {
-                buildingCanvas.enabled = false;
-            }
-        }
-    }
     public void UpgradeBuilding()
     {
         //Upgrade Conditions
@@ -129,11 +90,10 @@ public class Building : MonoBehaviour
         {
             //Upgrade Building
             buildingData.Upgrade();
+            EventManager.Instance.TriggerUpgradeBuilding(buildingData.buildingName.ToString());
             UpdateBuildingInfoText();
             Debug.Log(buildingData.buildingName + " upgraded to level " + buildingData.level);
         }
-
-
 
     }
     private bool CanAffordUpgrade()
@@ -182,8 +142,6 @@ public class Building : MonoBehaviour
 
         if (CanAffordRepair())
         {
-            //call a function to deduct cost
-
             //Repair Building 
             //buildingData.status = BuildingData.BuildingStatus.Working;
             StartCoroutine(RepairBuildingCoroutine());
@@ -210,5 +168,48 @@ public class Building : MonoBehaviour
         }
     }
 
+    private void ToggleCanvas()
+    {
+        if (buildingCanvas != null)
+        {
+            buildingCanvas.enabled = !buildingCanvas.enabled;
+
+            if (buildingCanvas.enabled && buildingInfoText != null)
+            {
+                UpdateBuildingInfoText();
+            }
+        }
+    }
+
+    private void UpdateBuildingInfoText()
+    {
+        if (buildingInfoText != null && buildingData != null)
+        {
+            buildingInfoText.text = buildingData.GetBuildingInfo();
+        }
+    }
     #endregion
+
+    #region Trigger Methods
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNearby = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNearby = false;
+            if (buildingCanvas != null)
+            {
+                buildingCanvas.enabled = false;
+            }
+        }
+    }
+        #endregion
+
 }

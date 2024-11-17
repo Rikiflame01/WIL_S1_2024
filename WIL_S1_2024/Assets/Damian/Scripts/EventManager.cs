@@ -9,6 +9,7 @@ public class EventManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("EventManager Awake");
         if (Instance == null)
         {
             Instance = this;
@@ -21,7 +22,7 @@ public class EventManager : MonoBehaviour
     }
 
     public UnityEvent TriggerUpgradeCinematicEvent;
-
+    public UnityEvent<string> UpgradeBulding = new UnityEvent<string>();
 
 
     private void Start()
@@ -30,11 +31,21 @@ public class EventManager : MonoBehaviour
         {
             TriggerUpgradeCinematicEvent = new UnityEvent();
         }
+        if (UpgradeBulding == null)
+        {
+            UpgradeBulding = new UnityEvent<string>();
+        }
     }
 
     public void TriggerUpgradeCinematic()
     {
         TriggerUpgradeCinematicEvent?.Invoke();
+    }
+
+    public void TriggerUpgradeBuilding(string building)
+    {
+        Debug.Log("Upgrade Building Event Triggered" + building);
+        UpgradeBulding?.Invoke(building);
     }
 }
 

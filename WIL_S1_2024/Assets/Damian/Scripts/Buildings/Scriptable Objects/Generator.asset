@@ -16,8 +16,8 @@ MonoBehaviour:
   status: 1
   baseOutput: 0
   outputPerLevel: 1
-  currentOutput: 2
-  level: 2
+  currentOutput: 3
+  level: 0
   resourceProduced: Electricity
   resourceInterval: 60
   repairCost: 10
@@ -27,4 +27,4 @@ MonoBehaviour:
   repairDescription: This will enable production of electricity!
   producedResource: 2
   buildingScript: {fileID: 0}
-  idleGainAmount: 11
+  idleGainAmount: 24
