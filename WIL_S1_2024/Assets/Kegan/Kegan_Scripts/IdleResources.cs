@@ -36,6 +36,15 @@ public class IdleResources : MonoBehaviour
 
     }
 
+    private void Start(){
+        EventManager.Instance.UpgradeCost.AddListener(UpgradeHandling);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.UpgradeCost.RemoveListener(UpgradeHandling);
+    }
+
     private void Update()
     {
         timer += Time.deltaTime;
@@ -46,6 +55,43 @@ public class IdleResources : MonoBehaviour
             AddResource(BuildingData.ResourceType.Rand, 0);
             AddResource(BuildingData.ResourceType.Water, 0);
             AddResource(BuildingData.ResourceType.Electricity, 0);
+        }
+    }
+
+    public void UpgradeHandling(string buildingName, int cost)
+    {
+        if (buildingName == "Generator")
+        {
+            if (CanAffordUpgrade(cost))
+            {
+                SpendResource(BuildingData.ResourceType.Rand, cost);
+            }
+            else
+            {
+                Debug.Log("Cannot upgrade. Insufficient rand.");
+            }
+        }
+        else if (buildingName == "WaterPump")
+        {
+            if (CanAffordUpgrade(cost))
+            {
+                SpendResource(BuildingData.ResourceType.Rand, cost);
+            }
+            else
+            {
+                Debug.Log("Cannot upgrade. Insufficient rand.");
+            }
+        }
+        else if (buildingName == "Bank")
+        {
+            if (CanAffordUpgrade(cost))
+            {
+                SpendResource(BuildingData.ResourceType.Rand, cost);
+            }
+            else
+            {
+                Debug.Log("Cannot upgrade. Insufficient rand.");
+            }
         }
     }
 
@@ -144,11 +190,6 @@ public class IdleResources : MonoBehaviour
             Debug.Log("Cannot repair. Insufficient gold or building is already repaired.");
         }
     }
-
-    
-
-
-
 }
 
 

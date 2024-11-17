@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 /// <summary>
@@ -7,6 +8,7 @@ using UnityEngine;
 /// </summary>
 public class Building : MonoBehaviour
 {
+
     #region Variables
     [Tooltip("Data for the building.")]
     public BuildingData buildingData;
@@ -35,6 +37,7 @@ public class Building : MonoBehaviour
         buildingData.level = 1;
         buildingData.status = BuildingData.BuildingStatus.Working;
         buildingData.currentOutput = 1;
+        buildingData.initialUpgradeCost = 20;
         StartCoroutine(RepairBuildingCoroutine());
         if (mainCamera == null)
         {
@@ -90,6 +93,8 @@ public class Building : MonoBehaviour
         {
             //Upgrade Building
             buildingData.Upgrade();
+            EventManager.Instance.TriggerUpgradeBuilding(buildingData.buildingName.ToString(), buildingData.initialUpgradeCost);
+            buildingData.initialUpgradeCost += buildingData.upgradeCostIncrease;
             EventManager.Instance.TriggerUpgradeBuilding(buildingData.buildingName.ToString());
             UpdateBuildingInfoText();
             Debug.Log(buildingData.buildingName + " upgraded to level " + buildingData.level);

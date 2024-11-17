@@ -22,8 +22,8 @@ public class EventManager : MonoBehaviour
     }
 
     public UnityEvent TriggerUpgradeCinematicEvent;
-    public UnityEvent<string> UpgradeBulding = new UnityEvent<string>();
-
+    public UnityEvent<string> UpgradeBuilding = new UnityEvent<string>();
+    public UnityEvent<string, int> UpgradeCost = new UnityEvent<string, int>();
 
     private void Start()
     {
@@ -31,9 +31,13 @@ public class EventManager : MonoBehaviour
         {
             TriggerUpgradeCinematicEvent = new UnityEvent();
         }
-        if (UpgradeBulding == null)
+        if (UpgradeBuilding == null)
         {
-            UpgradeBulding = new UnityEvent<string>();
+            UpgradeBuilding = new UnityEvent<string>();
+        }
+        if (UpgradeCost == null)
+        {
+            UpgradeCost = new UnityEvent<string, int>();
         }
     }
 
@@ -45,7 +49,13 @@ public class EventManager : MonoBehaviour
     public void TriggerUpgradeBuilding(string building)
     {
         Debug.Log("Upgrade Building Event Triggered" + building);
-        UpgradeBulding?.Invoke(building);
+        UpgradeBuilding?.Invoke(building);
+    }
+
+    public void TriggerUpgradeBuilding(string buildingName, int cost)
+    {
+        Debug.Log("Upgrade Building Event Triggered " + name+ " " + cost);
+        UpgradeCost?.Invoke(buildingName, cost);
     }
 }
 

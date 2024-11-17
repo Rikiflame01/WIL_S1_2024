@@ -11,12 +11,12 @@ public class BuildingLevelTracker : MonoBehaviour
 
     private void Start()
     {
-        EventManager.Instance.UpgradeBulding.AddListener(UpgradeBuilding);
+        EventManager.Instance.UpgradeBuilding.AddListener(UpgradeBuilding);
     }
 
     private void OnDisable()
     {
-        EventManager.Instance.UpgradeBulding.RemoveListener(UpgradeBuilding);
+        EventManager.Instance.UpgradeBuilding.RemoveListener(UpgradeBuilding);
     }
     public void UpgradeBuilding(string building)
     {
