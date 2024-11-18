@@ -20,8 +20,6 @@ public class BuildingLevelTracker : MonoBehaviour
     }
     public void UpgradeBuilding(string building)
     {
-        SoundManager.Instance.PlaySFX("Testsfx");
-        
         switch (building)
         {
             case "Generator":
