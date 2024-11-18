@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildingLevelTracker : MonoBehaviour
 {
-
+    private int transitionCount = 0;
     public int ElectricityBuildingLevel { get; private set; } = 1;
     public int WaterBuildingLevel { get; private set; } = 1;    
     public int BankBuildingLevel { get; private set; } = 1;
@@ -37,12 +37,15 @@ public class BuildingLevelTracker : MonoBehaviour
             default:
                 break;
         }
-
-        if (ElectricityBuildingLevel == 5 && WaterBuildingLevel == 5 
-            && BankBuildingLevel == 5)
+        if (transitionCount == 0)
         {
-            EventManager.Instance.TriggerUpgradeCinematic();
-            Debug.Log("Building Cinematic Triggered");
+            if (ElectricityBuildingLevel >= 5 && WaterBuildingLevel >= 5 
+                && BankBuildingLevel >= 5)
+            {
+                EventManager.Instance.TriggerUpgradeCinematic();
+                Debug.Log("Building Cinematic Triggered");
+                transitionCount++;
+            }
         }
     }
 }
