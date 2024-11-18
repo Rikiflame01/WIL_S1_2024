@@ -24,6 +24,9 @@ public class BuildingData : ScriptableObject
     public Building buildingScript;
     public int idleGainAmount = 1;
     
+    //NPC Happiness State uses
+    public float brokenTimer;
+    
 
     public string GetBuildingInfo()
     {

@@ -79,7 +79,8 @@ public class Building : MonoBehaviour
         if (buildingData.status != BuildingData.BuildingStatus.Working)
         {
             Debug.LogWarning("Cannot upgrade a broken building.");
-            return; //Exit if the building is broken
+            return; //
+                    //Exit if the building is broken
         }
 
         //Resource Cost Check
