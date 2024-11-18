@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3203276958103358276}
   - component: {fileID: 4762293875726826587}
   - component: {fileID: 6113306012226652504}
+  - component: {fileID: -2588306015325956560}
   m_Layer: 0
   m_Name: NPCParent
   m_TagString: Untagged
@@ -83,6 +84,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &-2588306015325956560
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501593640277167384}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 5454eca2f4a6a6841b61f5f60f98661b, type: 3}
+  m_Controller: {fileID: 9100000, guid: f9a5b73fa7334c846a04d89bfb2cee62, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5475189576371124679
 PrefabInstance:
   m_ObjectHideFlags: 0

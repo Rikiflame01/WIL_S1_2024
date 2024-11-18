@@ -25,6 +25,18 @@ public class NPCManager : MonoBehaviour
             npcs.Add(npc);
             npcMovingToWaypoint[npc] = false;
             lastWaypoint[npc] = null;
+
+            Animator animator = npc.GetComponent<Animator>();
+            if (animator == null)
+            {
+                Debug.LogError("Animator component missing on NPC prefab.");
+            }
+            else
+            {
+                animator.SetBool("IsIdle", true);
+                animator.SetBool("IsWalking", false);
+            }
+
             StartCoroutine(MoveNPC(npc));
             StartCoroutine(MoveToWaypoints(npc, true));
         }
@@ -40,11 +52,14 @@ public class NPCManager : MonoBehaviour
             if (!npcMovingToWaypoint[npc])
             {
                 NavMeshAgent agent = npc.GetComponent<NavMeshAgent>();
-                if (agent != null)
+                Animator animator = npc.GetComponent<Animator>();
+                if (agent != null && animator != null)
                 {
-                    Vector3 targetPosition = lastWaypoint.ContainsKey(npc) && lastWaypoint[npc] != null 
-                    ? lastWaypoint[npc].position : transform.position;
+                    Vector3 targetPosition = lastWaypoint.ContainsKey(npc) && lastWaypoint[npc] != null ? lastWaypoint[npc].position : transform.position;
                     agent.SetDestination(GetRandomPointOnNavMesh(targetPosition));
+                    animator.SetBool("IsWalking", true);
+                    animator.SetBool("IsIdle", false);
+                    StartCoroutine(UpdateNPCRotation(npc, agent));
                 }
             }
         }
@@ -67,7 +82,8 @@ public class NPCManager : MonoBehaviour
     void MoveToRandomWaypoint(GameObject npc)
     {
         NavMeshAgent agent = npc.GetComponent<NavMeshAgent>();
-        if (agent != null)
+        Animator animator = npc.GetComponent<Animator>();
+        if (agent != null && animator != null)
         {
             npcMovingToWaypoint[npc] = true;
             Transform waypoint;
@@ -77,17 +93,36 @@ public class NPCManager : MonoBehaviour
             } while (waypoint == lastWaypoint[npc]);
             lastWaypoint[npc] = waypoint;
             agent.SetDestination(waypoint.position);
-            StartCoroutine(ResetWaypointFlagAfterArrival(npc, agent));
+            animator.SetBool("IsWalking", true);
+            animator.SetBool("IsIdle", false);
+            StartCoroutine(UpdateNPCRotation(npc, agent));
+            StartCoroutine(ResetWaypointFlagAfterArrival(npc, agent, animator));
         }
     }
 
-    IEnumerator ResetWaypointFlagAfterArrival(GameObject npc, NavMeshAgent agent)
+    IEnumerator ResetWaypointFlagAfterArrival(GameObject npc, NavMeshAgent agent, Animator animator)
     {
-        while (!agent.pathPending && agent.remainingDistance > agent.stoppingDistance)
+        while (agent.pathPending || agent.remainingDistance > agent.stoppingDistance)
         {
             yield return null;
         }
         npcMovingToWaypoint[npc] = false;
+        animator.SetBool("IsWalking", false);
+        animator.SetBool("IsIdle", true);
+    }
+
+    IEnumerator UpdateNPCRotation(GameObject npc, NavMeshAgent agent)
+    {
+        while (agent.pathPending || agent.remainingDistance > agent.stoppingDistance)
+        {
+            if (agent.velocity.sqrMagnitude > Mathf.Epsilon)
+            {
+                Vector3 direction = agent.velocity.normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                npc.transform.rotation = Quaternion.LookRotation(direction);
+            }
+            yield return null;
+        }
     }
 
     Vector3 GetRandomPointOnNavMesh(Vector3 targetPosition)
