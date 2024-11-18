@@ -26,7 +26,7 @@ public class NPCManager : MonoBehaviour
             npcMovingToWaypoint[npc] = false;
             lastWaypoint[npc] = null;
 
-            Animator animator = npc.GetComponent<Animator>();
+            Animator animator = npc.GetComponentInChildren<Animator>();
             if (animator == null)
             {
                 Debug.LogError("Animator component missing on NPC prefab.");
@@ -52,7 +52,7 @@ public class NPCManager : MonoBehaviour
             if (!npcMovingToWaypoint[npc])
             {
                 NavMeshAgent agent = npc.GetComponent<NavMeshAgent>();
-                Animator animator = npc.GetComponent<Animator>();
+                Animator animator = npc.GetComponentInChildren<Animator>();
                 if (agent != null && animator != null)
                 {
                     Vector3 targetPosition = lastWaypoint.ContainsKey(npc) && lastWaypoint[npc] != null ? lastWaypoint[npc].position : transform.position;
@@ -82,7 +82,7 @@ public class NPCManager : MonoBehaviour
     void MoveToRandomWaypoint(GameObject npc)
     {
         NavMeshAgent agent = npc.GetComponent<NavMeshAgent>();
-        Animator animator = npc.GetComponent<Animator>();
+        Animator animator = npc.GetComponentInChildren<Animator>();
         if (agent != null && animator != null)
         {
             npcMovingToWaypoint[npc] = true;
