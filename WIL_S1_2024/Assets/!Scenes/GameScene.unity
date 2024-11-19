@@ -13937,7 +13937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -13950,7 +13950,7 @@ PrefabInstance:
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1110512363}
+      objectReference: {fileID: 1172364279}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -13973,7 +13973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: OnRepairButtonClick
+      value: RepairBuilding
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -13985,7 +13985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: IdleResources, Assembly-CSharp
+      value: Building, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
@@ -20456,6 +20456,8 @@ MonoBehaviour:
   water: 10
   electricity: 10
   idleGainInterval: 3
+  waterPump: {fileID: 1172364279}
+  generator: {fileID: 1243857811}
 --- !u!1001 &1116501469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20991,7 +20993,7 @@ PrefabInstance:
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1110512363}
+      objectReference: {fileID: 1243857811}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -21014,7 +21016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: OnRepairButtonClick
+      value: RepairBuilding
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -21026,7 +21028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: IdleResources, Assembly-CSharp
+      value: Building, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9081909753335306360, guid: a4badd3f1556d2e4bbfe508a032b3a4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
@@ -21983,9 +21985,9 @@ MonoBehaviour:
   buildingCanvas: {fileID: 617158539}
   mainCamera: {fileID: 1139120040}
   buildingInfoText: {fileID: 640622530}
-  premiumFixTime: 120
-  minTimeTillBreakDown: 30
-  maxTimeTillBreakDown: 60
+  premiumFixTime: 1
+  minTimeTillBreakDown: 2
+  maxTimeTillBreakDown: 5
   brokenTape: {fileID: 1670288538}
 --- !u!1001 &1173973375
 PrefabInstance:
@@ -22564,9 +22566,9 @@ MonoBehaviour:
   buildingCanvas: {fileID: 395436809}
   mainCamera: {fileID: 1139120040}
   buildingInfoText: {fileID: 2134173676}
-  premiumFixTime: 120
-  minTimeTillBreakDown: 30
-  maxTimeTillBreakDown: 60
+  premiumFixTime: 1
+  minTimeTillBreakDown: 2
+  maxTimeTillBreakDown: 5
   brokenTape: {fileID: 2090930320}
 --- !u!1 &1249220883
 GameObject:
@@ -29189,9 +29191,9 @@ MonoBehaviour:
   buildingCanvas: {fileID: 150842979}
   mainCamera: {fileID: 1139120040}
   buildingInfoText: {fileID: 1256709593}
-  premiumFixTime: 120
-  minTimeTillBreakDown: 30
-  maxTimeTillBreakDown: 60
+  premiumFixTime: 999
+  minTimeTillBreakDown: 900
+  maxTimeTillBreakDown: 999
   brokenTape: {fileID: 0}
 --- !u!65 &1734728534
 BoxCollider:

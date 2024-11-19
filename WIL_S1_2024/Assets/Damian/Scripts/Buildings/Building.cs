@@ -152,8 +152,8 @@ public class Building : MonoBehaviour
             //Repair Building 
             //buildingData.status = BuildingData.BuildingStatus.Working;
             StartCoroutine(RepairBuildingCoroutine());
-            StopCoroutine(ProduceResource());
-            StartCoroutine(ProduceResource());
+            //StopCoroutine(ProduceResource());
+            //StartCoroutine(ProduceResource());
 
 
             UpdateBuildingInfoText();

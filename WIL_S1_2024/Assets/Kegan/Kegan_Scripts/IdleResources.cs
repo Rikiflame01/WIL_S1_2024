@@ -21,7 +21,10 @@ public class IdleResources : MonoBehaviour
     private Building buildingScript;
     private BuildingData buildingDataScript;
 
-    
+    [SerializeField] private Building waterPump;
+    [SerializeField] private Building generator;
+
+
     private void Awake()
     {
 
@@ -174,14 +177,21 @@ public class IdleResources : MonoBehaviour
             electricityAmountText.text = electricity.ToString();
         }
     }
-    public void OnRepairButtonClick()
+    public void OnRepairButtonClick(bool isWater)
     {
-        Debug.Log("repair clcked");
+        Debug.Log("repair clicked");
         if (rand >= buildingDataScript.repairCost)
         {
             rand -= buildingDataScript.repairCost;
-            buildingScript.RepairBuilding();
-
+            //buildingScript.RepairBuilding();
+            if (isWater)
+            {
+                waterPump.RepairBuilding();
+            }
+            else
+            {
+                generator.RepairBuilding();
+            }
             UpdateTexts();
         }
         else
