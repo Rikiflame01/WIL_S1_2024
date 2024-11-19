@@ -28,6 +28,7 @@ public class Building : MonoBehaviour
     [SerializeField] private float premiumFixTime = 120f;
     [SerializeField] private float minTimeTillBreakDown = 30;
     [SerializeField] private float maxTimeTillBreakDown = 60;
+    [SerializeField] private GameObject brokenTape;
 
     #endregion
 
@@ -118,7 +119,7 @@ public class Building : MonoBehaviour
         float randomTime = Random.Range(minTimeTillBreakDown, maxTimeTillBreakDown);
 
         totalRepairTime = premiumFixTime + randomTime;
-
+        brokenTape.SetActive(false);
 
 
 
@@ -127,6 +128,7 @@ public class Building : MonoBehaviour
 
 
         buildingData.status = BuildingData.BuildingStatus.Broken;
+        brokenTape.SetActive(true);
         Debug.Log("Building has broken again after repair time elapsed.");
     }
 
