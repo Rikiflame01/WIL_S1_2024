@@ -490,7 +490,6 @@ GameObject:
   - component: {fileID: 3772850616367876703}
   - component: {fileID: 7228876414222959376}
   - component: {fileID: 43341752729137958}
-  - component: {fileID: 6520616606925981469}
   m_Layer: 5
   m_Name: ResourceCanvas
   m_TagString: Untagged
@@ -583,25 +582,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6520616606925981469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3264399408739171098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36bafa94b56ecbb41b6a7579fc55b377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randAmountText: {fileID: 3840908085249413727}
-  waterAmountText: {fileID: 3293424999129158995}
-  electricityAmountText: {fileID: 5163978290286948691}
-  rand: 10
-  water: 10
-  electricity: 10
-  delayAmount: 10
 --- !u!1 &6005671822930309690
 GameObject:
   m_ObjectHideFlags: 0
