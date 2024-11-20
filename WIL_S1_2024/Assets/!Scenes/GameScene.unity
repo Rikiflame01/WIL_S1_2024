@@ -5958,6 +5958,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4391976436198210, guid: b48086d9f175aa34b947a21c8056c3d2, type: 3}
   m_PrefabInstance: {fileID: 79363181}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &85569467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 85569469}
+  - component: {fileID: 85569468}
+  m_Layer: 0
+  m_Name: TradingShopManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &85569468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85569467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0323b6c0b197b4b98b7612c42c3b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleResources: {fileID: 1110512363}
+--- !u!4 &85569469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85569467}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.189913, y: -3.9425619, z: -2.4891398}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &86975995 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4279449019447086, guid: eded051879df4c147b9010199d240258, type: 3}
@@ -39768,9 +39813,81 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5124180934315045338, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_Name
+      value: TradeRandForResource
+      objectReference: {fileID: 0}
     - target: {fileID: 6930231139294917055, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
       propertyPath: m_Name
       value: TradingShop Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736151278349827526, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_Name
+      value: TradeResourceForRand
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122997580988348075, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122997580988348075, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122997580988348075, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 85569468}
+    - target: {fileID: 8122997580988348075, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122997580988348075, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TradeResourcesForRand
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122997580988348075, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TradingShopManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8122997580988348075, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135019532460017881, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135019532460017881, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135019532460017881, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135019532460017881, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 85569468}
+    - target: {fileID: 9135019532460017881, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135019532460017881, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135019532460017881, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TradeRandForResources
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135019532460017881, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TradingShopManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135019532460017881, guid: b8742afc3ba68a14a81d3ffe0fdba12d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -40109,6 +40226,7 @@ SceneRoots:
   - {fileID: 1847761485}
   - {fileID: 1164546550}
   - {fileID: 1110512362}
+  - {fileID: 85569469}
   - {fileID: 27202805}
   - {fileID: 533176433}
   - {fileID: 1346103728}
