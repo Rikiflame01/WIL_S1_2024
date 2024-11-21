@@ -1,31 +1,40 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
-public class GeneratorMiniGameLogic : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+public class GeneratorMiniGameLogic : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private RectTransform rectTransform;
+    public RectTransform rectTransform;
     private Canvas canvas;
     private CanvasGroup canvasGroup;
+    private Image image;
 
-    [Tooltip("The wire's color. Must match the socket's color.")]
     public string wireColor;
-
-    [Tooltip("The socket's color if this GameObject is a socket.")]
     public string socketColor;
-
-    [Tooltip("Reference to the lit-up wire images.")]
     public GameObject redWireLitUp;
     public GameObject blueWireLitUp;
     public GameObject greenWireLitUp;
 
-    private bool isSocket;
+    public bool isSocket;
+
+    private Vector2 originalPosition;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
+        image = GetComponent<Image>();
         isSocket = !string.IsNullOrEmpty(socketColor);
+    }
+
+    private void Start()
+    {
+        if (!isSocket)
+        {
+            originalPosition = rectTransform.anchoredPosition;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -34,6 +43,11 @@ public class GeneratorMiniGameLogic : MonoBehaviour, IBeginDragHandler, IDragHan
 
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
+
+        if (image != null)
+        {
+            image.raycastTarget = false;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -49,70 +63,107 @@ public class GeneratorMiniGameLogic : MonoBehaviour, IBeginDragHandler, IDragHan
 
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+
+        if (image != null)
+        {
+            image.raycastTarget = true;
+        }
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        bool socketFound = false;
+
+        foreach (var result in results)
+        {
+            GeneratorMiniGameLogic socket = result.gameObject.GetComponent<GeneratorMiniGameLogic>();
+            if (socket != null && socket.isSocket)
+            {
+                socketFound = true;
+                if (socket.socketColor == wireColor)
+                {
+                    rectTransform.position = socket.rectTransform.position;
+                    enabled = false;
+
+                    EnableLitUpImage(wireColor);
+
+                    FindObjectOfType<GeneratorMiniGameManager>().CheckCompletion();
+                }
+                else
+                {
+                    ResetPosition();
+                }
+                break;
+            }
+        }
+
+        if (!socketFound)
+        {
+            ResetPosition();
+        }
     }
 
-    public void OnDrop(PointerEventData eventData)
+    public void ResetPosition()
     {
-        if (!isSocket) return;
-
-        GeneratorMiniGameLogic wire = eventData.pointerDrag.GetComponent<GeneratorMiniGameLogic>();
-        if (wire != null && wire.wireColor == socketColor)
+        if (!isSocket)
         {
-            Debug.Log($"Correct wire connected! Color: {wire.wireColor}");
-            wire.transform.position = transform.position; //Snap the wire to the socket
-            wire.enabled = false; //Disable further dragging
+            rectTransform.anchoredPosition = originalPosition;
 
-            //Enable the corresponding LitUp image
-            EnableLitUpImage(wire.wireColor);
+            enabled = true;
 
-            FindObjectOfType<GeneratorMiniGameManager>().CheckCompletion();
-        }
-        else if (wire != null)
-        {
-            Debug.Log("Incorrect wire!");
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = true;
+
+            DisableLitUpImage(wireColor);
         }
     }
 
     private void EnableLitUpImage(string color)
     {
-        Debug.Log($"Enabling LitUp image for color: {color}");
         switch (color)
         {
             case "Red":
                 if (redWireLitUp != null)
                 {
                     redWireLitUp.SetActive(true);
-                    Debug.Log("Red lit-up image enabled.");
-                }
-                else
-                {
-                    Debug.LogWarning("RedWireLitUp is not assigned!");
                 }
                 break;
             case "Blue":
                 if (blueWireLitUp != null)
                 {
                     blueWireLitUp.SetActive(true);
-                    Debug.Log("Blue lit-up image enabled.");
-                }
-                else
-                {
-                    Debug.LogWarning("BlueWireLitUp is not assigned!");
                 }
                 break;
             case "Green":
                 if (greenWireLitUp != null)
                 {
                     greenWireLitUp.SetActive(true);
-                    Debug.Log("Green lit-up image enabled.");
-                }
-                else
-                {
-                    Debug.LogWarning("GreenWireLitUp is not assigned!");
                 }
                 break;
-            default:
-                Debug.LogWarning($"Unknown wire color: {color}");
+        }
+    }
+
+    private void DisableLitUpImage(string color)
+    {
+        switch (color)
+        {
+            case "Red":
+                if (redWireLitUp != null)
+                {
+                    redWireLitUp.SetActive(false);
+                }
+                break;
+            case "Blue":
+                if (blueWireLitUp != null)
+                {
+                    blueWireLitUp.SetActive(false);
+                }
+                break;
+            case "Green":
+                if (greenWireLitUp != null)
+                {
+                    greenWireLitUp.SetActive(false);
+                }
                 break;
         }
     }

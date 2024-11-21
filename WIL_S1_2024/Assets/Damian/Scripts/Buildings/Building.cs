@@ -112,7 +112,6 @@ public class Building : MonoBehaviour
     {
 
         buildingData.status = BuildingData.BuildingStatus.Working;
-        Debug.Log("Building is now working.");
         float totalRepairTime;
 
         float randomTime = Random.Range(minTimeTillBreakDown, maxTimeTillBreakDown);
@@ -128,7 +127,6 @@ public class Building : MonoBehaviour
 
         buildingData.status = BuildingData.BuildingStatus.Broken;
         brokenTape.SetActive(true);
-        Debug.Log("Building has broken again after repair time elapsed.");
     }
 
     public void RepairBuilding()

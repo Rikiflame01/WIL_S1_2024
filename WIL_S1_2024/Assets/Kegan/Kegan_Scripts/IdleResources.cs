@@ -106,7 +106,7 @@ public class IdleResources : MonoBehaviour
         {
             if (building.buildingData.status == BuildingData.BuildingStatus.Broken)
             {
-                Debug.Log(building.name + " is broken");
+                
             }
             else
             {

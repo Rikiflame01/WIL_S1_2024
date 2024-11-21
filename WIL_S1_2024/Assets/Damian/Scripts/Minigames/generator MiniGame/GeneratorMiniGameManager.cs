@@ -20,18 +20,20 @@ public class GeneratorMiniGameManager : MonoBehaviour
         ResetGame();
     }
 
-    private void ResetGame()
-    {
-        completionPanel.SetActive(false); //Hide the completion panel initially
+private void ResetGame()
+{
+    completionPanel.SetActive(false); // Hide the completion panel initially
 
-        foreach (GameObject wire in wires)
-        {
-            var wireConnector = wire.GetComponent<GeneratorMiniGameLogic>();
-            wireConnector.enabled = true; 
-            
-            wire.GetComponent<RectTransform>().anchoredPosition = wireConnector.GetComponent<RectTransform>().anchoredPosition;
-        }
+    foreach (GameObject wire in wires)
+    {
+        var wireConnector = wire.GetComponent<GeneratorMiniGameLogic>();
+        wireConnector.enabled = true; 
+
+        // Call the ResetPosition() method to reset the wire's position
+        wireConnector.ResetPosition();
     }
+}
+
 
     public void CheckCompletion()
     {
@@ -62,6 +64,7 @@ public class GeneratorMiniGameManager : MonoBehaviour
         //Hide the entire generator canvas
         if (generatorMiniGameCanvas != null)
         {
+            ResetGame();
             generatorMiniGameCanvas.gameObject.SetActive(false);
             Debug.Log("Generator Mini-Game canvas hidden.");
         }
