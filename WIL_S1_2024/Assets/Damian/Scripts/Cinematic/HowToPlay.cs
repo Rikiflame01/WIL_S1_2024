@@ -7,6 +7,8 @@ public class HowToPlay : MonoBehaviour
     [Tooltip("Parent canvas for the intro.")]
     public GameObject IntroCanvas;
 
+    public CanvasGroup[] canvasGroup;
+
     [Tooltip("Text objects to be displayed in order.")]
     public TextMeshProUGUI[] IntroTexts;
 
@@ -20,6 +22,11 @@ public class HowToPlay : MonoBehaviour
 
     void Start()
     {
+        foreach (CanvasGroup group in canvasGroup)
+        {
+            group.alpha = 0f;
+        }
+        
         EventManager.Instance.TriggerCinematic();
         StoreOriginalTexts();
         StartCoroutine(ShowIntro());
@@ -57,6 +64,10 @@ public class HowToPlay : MonoBehaviour
             IntroTexts[IntroTexts.Length - 1].gameObject.SetActive(false);
         }
 
+        foreach (CanvasGroup group in canvasGroup)
+        {
+            group.alpha = 1f;
+        }
         IntroCanvas.SetActive(false);
     }
 
