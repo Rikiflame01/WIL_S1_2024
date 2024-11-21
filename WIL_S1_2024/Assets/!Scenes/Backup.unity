@@ -33487,7 +33487,7 @@ MonoBehaviour:
   - {fileID: 728980423}
   - {fileID: 937139746}
   typingSpeed: 0.01
-  delayBetweenTexts: 3
+  delayBetweenTexts: 4
 --- !u!114 &1505225815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47215,6 +47215,7 @@ SceneRoots:
   - {fileID: 1855496222}
   - {fileID: 1859371895}
   - {fileID: 1029601721}
+  - {fileID: 1419440637}
   - {fileID: 1505225818}
   - {fileID: 52959590}
   - {fileID: 47354385}
@@ -47244,7 +47245,6 @@ SceneRoots:
   - {fileID: 1993840787}
   - {fileID: 1139120041}
   - {fileID: 940594423}
-  - {fileID: 1419440637}
   - {fileID: 988523361}
   - {fileID: 1915666465}
   - {fileID: 416633641}
