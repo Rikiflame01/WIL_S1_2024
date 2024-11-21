@@ -130,7 +130,7 @@ public class Building : MonoBehaviour
 
         buildingData.status = BuildingData.BuildingStatus.Broken;
         brokenTape.SetActive(true);
-        waterLeakVFX.Stop();
+        waterLeakVFX.Play();
     }
 
     public void RepairBuilding()
@@ -156,7 +156,7 @@ public class Building : MonoBehaviour
             StartCoroutine(RepairBuildingCoroutine());
             //StopCoroutine(ProduceResource());
             //StartCoroutine(ProduceResource());
-            waterLeakVFX.Play();
+            waterLeakVFX.Stop();
 
 
             UpdateBuildingInfoText();
