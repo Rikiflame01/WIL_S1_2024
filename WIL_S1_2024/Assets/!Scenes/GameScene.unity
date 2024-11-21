@@ -8945,7 +8945,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Remember to moniter the villagers happiness levels! \n\nGoodluck!"
+  m_text: "Remember to monitor the villagers' happiness levels! \n\nGoodluck!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18979,7 +18979,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Repair, Upgrade and trade the towns way to prosperity.
+  m_text: 'Repair, upgrade and trade the towns'' way to prosperity.
 
 
 '
@@ -24824,7 +24824,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Your mission is to fix the Town!
+  m_text: 'Your mission is to fix the town!
 
 
 '
