@@ -22,6 +22,8 @@ public class EventManager : MonoBehaviour
     }
 
     public UnityEvent TriggerUpgradeCinematicEvent;
+    public UnityEvent TriggerCinematicEvent;
+
     public UnityEvent<string> UpgradeBuilding = new UnityEvent<string>();
     public UnityEvent<string, int> UpgradeCost = new UnityEvent<string, int>();
 
@@ -45,6 +47,15 @@ public class EventManager : MonoBehaviour
         {
             TriggerGeneratorMiniGameReset = new UnityEvent();
         }
+        if (TriggerCinematicEvent == null)
+        {
+            TriggerCinematicEvent = new UnityEvent();
+        }
+    }
+
+    public void TriggerCinematic()
+    {
+        TriggerCinematicEvent?.Invoke();
     }
 
     public void TriggerGeneratorMiniGameResetEvent()

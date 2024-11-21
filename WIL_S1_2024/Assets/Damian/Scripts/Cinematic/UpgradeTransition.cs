@@ -19,11 +19,13 @@ public class UpgradeTransition : MonoBehaviour
     void Start()
     {
         EventManager.Instance.TriggerUpgradeCinematicEvent.AddListener(StartTransition);
+        EventManager.Instance.TriggerCinematicEvent.AddListener(StartTransition);
     }
 
     void OnDestroy()
     {
-                EventManager.Instance.TriggerUpgradeCinematicEvent.RemoveListener(StartTransition);
+        EventManager.Instance.TriggerUpgradeCinematicEvent.RemoveListener(StartTransition);
+        EventManager.Instance.TriggerCinematicEvent.RemoveListener(StartTransition);
     }
 
     void Update()
