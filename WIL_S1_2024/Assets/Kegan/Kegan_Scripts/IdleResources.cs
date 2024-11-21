@@ -157,6 +157,22 @@ public class IdleResources : MonoBehaviour
 
         UpdateTexts();
     }
+    public void buyResource(BuildingData.ResourceType resourceType, int amount) 
+    {
+        switch (resourceType)
+        {
+            case BuildingData.ResourceType.Rand:
+                rand += amount;
+                break;
+            //handle other resource types if needed
+            case BuildingData.ResourceType.Electricity:
+                electricity += amount;
+                break;
+            case BuildingData.ResourceType.Water:
+                water += amount;
+                break;
+        }
+    }
 
 
     public bool CanAffordRepair(int cost)

@@ -11,8 +11,8 @@ public class TradingShopManager : MonoBehaviour
         if (idleResources.rand >= 20)
         {
             idleResources.SpendResource(BuildingData.ResourceType.Rand, 20);
-            idleResources.AddResource(BuildingData.ResourceType.Water, 20);
-            idleResources.AddResource(BuildingData.ResourceType.Electricity, 20);
+            idleResources.buyResource(BuildingData.ResourceType.Water, 20);
+            idleResources.buyResource(BuildingData.ResourceType.Electricity, 20);
             Debug.Log("Traded 20 Rand for 20 Water and 20 Electricity.");
         }
         else
@@ -28,7 +28,7 @@ public class TradingShopManager : MonoBehaviour
         {
             idleResources.SpendResource(BuildingData.ResourceType.Electricity, 20);
             idleResources.SpendResource(BuildingData.ResourceType.Water, 20);
-            idleResources.AddResource(BuildingData.ResourceType.Rand, 40);
+            idleResources.buyResource(BuildingData.ResourceType.Rand, 40);
             Debug.Log("Traded 20 Electricity and 20 Water for 40 Rand.");
         }
         else
