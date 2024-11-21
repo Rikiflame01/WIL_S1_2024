@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.VFX;
 
 /// <summary>
 /// Manages building interactions, including displaying information and toggling canvas visibility.
@@ -37,6 +36,7 @@ public class Building : MonoBehaviour
     #region Unity Methods
     void Start()
     {
+        waterLeakVFX.Stop();
         buildingData.level = 1;
         buildingData.status = BuildingData.BuildingStatus.Working;
         buildingData.currentOutput = 1;
@@ -69,6 +69,23 @@ public class Building : MonoBehaviour
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.F))
         {
             ToggleCanvas();
+        }
+
+        if (buildingData.status != BuildingData.BuildingStatus.Working)
+        {
+            if (!waterLeakVFX.isPlaying)
+            {
+                waterLeakVFX.Play();
+            }
+
+        }
+        else
+        {
+            if (waterLeakVFX.isPlaying)
+            {
+                waterLeakVFX.Stop();
+            }
+
         }
 
     }
@@ -220,6 +237,6 @@ public class Building : MonoBehaviour
             }
         }
     }
-        #endregion
+    #endregion
 
 }
