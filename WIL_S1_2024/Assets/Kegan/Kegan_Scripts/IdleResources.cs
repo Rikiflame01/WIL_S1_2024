@@ -146,7 +146,13 @@ public class IdleResources : MonoBehaviour
             case BuildingData.ResourceType.Rand:
                 rand -= amount;
                 break;
-                //handle other resource types if needed
+            //handle other resource types if needed
+            case BuildingData.ResourceType.Electricity:
+                electricity -= amount;
+                break;
+            case BuildingData.ResourceType.Water:
+                water -= amount;
+                break;
         }
 
         UpdateTexts();
