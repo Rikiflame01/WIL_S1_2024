@@ -68,6 +68,7 @@ public class HowToPlay : MonoBehaviour
         {
             group.alpha = 1f;
         }
+        EventManager.Instance.TriggerEndIntro();
         IntroCanvas.SetActive(false);
     }
 

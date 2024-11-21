@@ -24,6 +24,8 @@ public class EventManager : MonoBehaviour
     public UnityEvent TriggerUpgradeCinematicEvent;
     public UnityEvent TriggerCinematicEvent;
 
+    public UnityEvent TriggerEndIntroEvent = new UnityEvent();
+
     public UnityEvent<string> UpgradeBuilding = new UnityEvent<string>();
     public UnityEvent<string, int> UpgradeCost = new UnityEvent<string, int>();
 
@@ -51,6 +53,15 @@ public class EventManager : MonoBehaviour
         {
             TriggerCinematicEvent = new UnityEvent();
         }
+        if (TriggerEndIntroEvent == null)
+        {
+            TriggerEndIntroEvent = new UnityEvent();
+        }
+    }
+
+    public void TriggerEndIntro()
+    {
+        TriggerEndIntroEvent?.Invoke();
     }
 
     public void TriggerCinematic()

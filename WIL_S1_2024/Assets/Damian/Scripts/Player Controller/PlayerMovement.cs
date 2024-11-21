@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+    private bool isIntroCinematic = true;
+
     public float speed = 3f;
     public float rotationSpeed = 10f;
     public Transform cameraTransform;
@@ -18,9 +20,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        EventManager.Instance.TriggerEndIntroEvent.AddListener(EndIntroCinematic);
         playerInput = new PlayerControls();
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+    }
+
+    private void EndIntroCinematic()
+    {
+        isIntroCinematic = false;
     }
 
     private void OnEnable()
@@ -33,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
+        EventManager.Instance.TriggerEndIntroEvent.RemoveListener(EndIntroCinematic);
         moveAction.Disable();
     }
 
@@ -45,6 +54,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isIntroCinematic == true)
+        {
+            return;
+        }
         Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
 
         if (moveDirection.magnitude >= 0.1f)
