@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.VFX;
 
 /// <summary>
 /// Manages building interactions, including displaying information and toggling canvas visibility.
@@ -28,6 +29,8 @@ public class Building : MonoBehaviour
     [SerializeField] private float minTimeTillBreakDown = 30;
     [SerializeField] private float maxTimeTillBreakDown = 60;
     [SerializeField] private GameObject brokenTape;
+
+    public ParticleSystem waterLeakVFX;
 
     #endregion
 
@@ -127,6 +130,7 @@ public class Building : MonoBehaviour
 
         buildingData.status = BuildingData.BuildingStatus.Broken;
         brokenTape.SetActive(true);
+        waterLeakVFX.Stop();
     }
 
     public void RepairBuilding()
@@ -152,6 +156,7 @@ public class Building : MonoBehaviour
             StartCoroutine(RepairBuildingCoroutine());
             //StopCoroutine(ProduceResource());
             //StartCoroutine(ProduceResource());
+            waterLeakVFX.Play();
 
 
             UpdateBuildingInfoText();
