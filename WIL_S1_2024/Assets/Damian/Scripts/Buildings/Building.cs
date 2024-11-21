@@ -36,7 +36,11 @@ public class Building : MonoBehaviour
     #region Unity Methods
     void Start()
     {
-        waterLeakVFX.Stop();
+        if (buildingData.resourceProduced == "Water")
+        {
+waterLeakVFX.Stop();
+        }
+        
         buildingData.level = 1;
         buildingData.status = BuildingData.BuildingStatus.Working;
         buildingData.currentOutput = 1;
@@ -75,7 +79,10 @@ public class Building : MonoBehaviour
         {
             if (!waterLeakVFX.isPlaying)
             {
-                waterLeakVFX.Play();
+                if (buildingData.resourceProduced == "Water")
+                {
+                    waterLeakVFX.Play();
+                }
             }
 
         }
@@ -83,7 +90,10 @@ public class Building : MonoBehaviour
         {
             if (waterLeakVFX.isPlaying)
             {
-                waterLeakVFX.Stop();
+                if (buildingData.resourceProduced == "Water")
+                {
+                    waterLeakVFX.Stop();
+                }
             }
 
         }
@@ -147,7 +157,7 @@ public class Building : MonoBehaviour
 
         buildingData.status = BuildingData.BuildingStatus.Broken;
         brokenTape.SetActive(true);
-        waterLeakVFX.Play();
+        //waterLeakVFX.Play();
     }
 
     public void RepairBuilding()
@@ -173,7 +183,7 @@ public class Building : MonoBehaviour
             StartCoroutine(RepairBuildingCoroutine());
             //StopCoroutine(ProduceResource());
             //StartCoroutine(ProduceResource());
-            waterLeakVFX.Stop();
+            //waterLeakVFX.Stop();
 
 
             UpdateBuildingInfoText();

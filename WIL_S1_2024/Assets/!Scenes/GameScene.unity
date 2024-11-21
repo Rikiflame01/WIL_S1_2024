@@ -30035,7 +30035,7 @@ MonoBehaviour:
   minTimeTillBreakDown: 30
   maxTimeTillBreakDown: 60
   brokenTape: {fileID: 2090930320}
-  waterLeakVFX: {fileID: 0}
+  waterLeakVFX: {fileID: 27870756}
 --- !u!1 &1249220883
 GameObject:
   m_ObjectHideFlags: 0
@@ -37859,7 +37859,7 @@ MonoBehaviour:
   minTimeTillBreakDown: 900
   maxTimeTillBreakDown: 999
   brokenTape: {fileID: 0}
-  waterLeakVFX: {fileID: 0}
+  waterLeakVFX: {fileID: 27870756}
 --- !u!65 &1734728534
 BoxCollider:
   m_ObjectHideFlags: 0
